@@ -1,0 +1,69 @@
+-- Criação de tabelas
+CREATE TABLE campeonato (
+ camp_id SERIAL PRIMARY KEY,  
+ camp_nome VARCHAR(200) NOT NULL,  
+ camp_data_inicio DATE NOT NULL,  
+ camp_data_fim DATE NOT NULL,  
+ cap_ano INT NOT NULL
+);
+
+CREATE TABLE times_futebol ( 
+ time_id SERIAL PRIMARY KEY,  
+ time_nome VARCHAR(200) NOT NULL,  
+ time_cidade VARCHAR(200) NOT NULL,  
+ time_ano INT NOT NULL,  
+ time_estado VARCHAR NOT NULL
+
+); 
+
+CREATE TABLE jogador ( 
+ joga_id SERIAL PRIMARY KEY ,  
+ joga_nome VARCHAR(200) NOT NULL,  
+ joga_data_nasc DATE NOT NULL,  
+ joga_posicao VARCHAR(200) NOT NULL,  
+ joga_num_camisa INT NOT NULL  
+
+); 
+
+CREATE TABLE partida ( 
+ parti_id SERIAL PRIMARY KEY,  
+ time_nome VARCHAR(200) NOT NULL,  
+ parti_data DATE NOT NULL,  
+ parti_horario TIME NOT NULL,  
+ parti_time_mandante VARCHAR(200),  
+ parti_time_vistante VARCHAR(200),  
+ parti_gols_mandante INT,  
+ parti_gols_visitante INT,
+ fk_camp_id INT NOT NULL,
+ FOREIGN KEY (camp_id)
+ REFERENCES campeonato(camp_id)   
+); 
+
+CREATE TABLE estadio ( 
+ esta_id SERIAL PRIMARY KEY ,  
+ esta_nome VARCHAR(200) NOT NULL,  
+ esta_ano INT NOT NULL,  
+ esta_capacidade INT NOT NULL
+); 
+
+CREATE TABLE pertence ( 
+ pertence SERIAL PRIMARY KEY,
+ time_id INT,  
+ joga_id INT
+); 
+
+CREATE TABLE inscreve ( 
+ increve_id SERIAL PRIMARY KEY,
+ time_id INT,  
+ camp_id INT,  
+ insc_data_incricao DATE NOT NULL  
+
+); 
+
+CREATE TABLE contem( 
+ contem SERIAL PRIMARY KEY,
+ esta_id INT,
+ parti_id INT
+
+); 
+
